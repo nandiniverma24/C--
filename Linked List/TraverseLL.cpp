@@ -40,30 +40,20 @@ public:
     }
 
     void insertAtPosition(int data, int position) {
-        if (position < 1) {
-            cout << "Position should be >= 1." << endl;
-            return;
-        }
-
-        if (position == 1) {
+        if (position == 1 || head==nullptr) {
             insertAtBeginning(data);
             return;
         }
 
         Node* newNode = new Node(data);
         Node* current = head;
-        for (int i = 1; i < position - 1 && current != nullptr; i++) {
-            current = current->next;
+        int count=1;
+        while(current->next!=nullptr && count<position-1) {
+            current=current->next;
+            count++;
         }
-
-        if (current == nullptr) {
-            cout << "Position out of range." << endl;
-            delete newNode;
-            return;
-        }
-
-        newNode->next = current->next;
-        current->next = newNode;
+        newNode->next=current->next;
+        current->next=newNode;
     }
     
     void deleteFromBeginning()
