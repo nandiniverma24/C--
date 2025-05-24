@@ -1,0 +1,34 @@
+#include <iostream>
+#include <vector>
+#include <string>
+using namespace std;
+
+void permute(string &str,int index,set<string> &ans) {
+    
+    if(index==(str.size()-1)){
+        ans.insert(str);
+        return;
+    }
+    
+    for(int i=0;i<str.length();i++){
+        swap(str[i],str[index]);
+        permute(str,index+1,ans);
+        swap(str[i],str[index]);
+    }
+
+}
+
+int main() {
+    string str;
+    cin>>str;
+    
+    set<string> ans;
+
+    permute(str,0,ans);
+    
+    for(auto i : ans){
+        cout<<i<<endl;
+    }
+    
+    return 0;
+}
